@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+    #dialogOverlay {
+      display: none;
+      opacity: .8;
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      background: #FFF;
+      width: 100%;
+      z-index: 10;
+    }
+    #dialogBox {
+      display: none;
+      position: fixed;
+      background: #000;
+      border-radius: 7px;
+      width: 550px;
+      z-index: 10;
+    }
+
+#dialogBox > div{background:#FFF; margin: 8px; }
+#dialogBox > div > #dialogBoxHead{ background: #666; font-size: 19px; 
+  padding: 10px; color: #CCC; }
+#dialogBox > div > #dialogBoxBody{ background: #333; 
+  padding: 20px; color: #FFF; }
+#dialogBox > div > #dialogBoxFoot{ background: #666; 
+  padding: 10px; text-align: right; }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<body>
+<div id="dialogOverlay"></div>
+<div id="dialogBox">
+  <div>
+    <div id="dialogBoxHead"></div>
+    <div id="dialogBoxBody"></div>
+    <div id="dialogBoxFoot"></div>
+  </div>
+</div>
+<button id="promptButton">Click here for a cool prompt</button>
+<p id="promptText">I am here to be changed</p>
+</body>
+<script type="text/javascript">
+function CustomPrompt () {
+    this.render = function(dialog) {
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
+        var dialogOverlay = $("#dialogOverlay");
+        var dialogBox = $("#dialogBox");
+        dialogOverlay.css("display", "block");
+        dialogOverlay.css("height", winH + "px")
+        dialogBox.css("left", (winW/2) - (550 * .5) + "px")
+        dialogBox.css("top", "100px")
+        dialogBox.css("display", "block");
+        $("#dialogBoxHead").html("COFIRMATION: ");
+        $("#dialogBoxBody").html(dialog + '<br><input id="prompt_value1">');
+        $("#dialogBoxFoot").html('<button onclick="Prompt.ok()">OK</button>' + '&nbsp &nbsp' + '<button onclick="Prompt.cancel()">Cancel</button>');
+    }
+
+   this.cancel = function() {
+    $("#dialogBox").css("display", "none");
+    $("#dialogOverlay").css("display", "none")
+       }
+
+    this.ok = function() {
+      var prompt_value1 = $("#prompt_value1").val();
+      //ENTER WHATEVER YOU WANT HERE
+      $("#promptText").html(prompt_value1);
+      //TO HERE
+      $("#dialogBox").css("display", "none");
+    $("#dialogOverlay").css("display", "none")
+    }
+}
+var Prompt = new CustomPrompt();
+
+  $("#promptButton").on("click", function() {
+    Prompt.render("Enter whatever you want");
+  })
+
+
+// $("#tradAlert").on("click", alert("This is a boring alert box"));
+// $("#newAlert").on("click", Alert.render());
+</script>
+</html>
