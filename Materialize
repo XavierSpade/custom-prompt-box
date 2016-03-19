@@ -62,7 +62,7 @@ function CustomPrompt () {
         dialogBox.css("display", "block");
         $("#dialogBoxHead").html("CONFIRMATION: ");
         $("#dialogBoxBody").html(dialog + '<div class="row"><form class="col s12"><div class="row"><div class="input-field col s6"><i class="material-icons prefix">account_circle</i><input id="prompt_value1" type="text" class="validate"><label for="icon_prefix">First Name</label></div><div class="input-field col s6"><i class="material-icons prefix">phone</i><input id="prompt_value2" type="tel" class="validate"><label for="icon_telephone">Telephone</label></div></div></form></div>');
-        $("#dialogBoxFoot").html('<button onclick="Prompt.ok()">OK</button>' + '&nbsp &nbsp' + '<button onclick="Prompt.cancel()">Cancel</button>');
+        $("#dialogBoxFoot").html('<button class="waves-effect waves-light btn" onclick="Prompt.ok()">OK</button>' + '&nbsp &nbsp' + '<button class="waves-effect waves-light btn" onclick="Prompt.cancel()">Cancel</button>');
     }
 
    this.cancel = function() {
